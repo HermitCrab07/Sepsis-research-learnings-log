@@ -1,10 +1,8 @@
 # Sepsis-research-learnings-log
 Research, literature reviews, and Kaggle‑based learnings toward a multi‑modal sepsis detection pipeline
 
-# Sepsis Research Log
-
-Early‑stage, open notebook of everything I’m learning on the road to a **multi‑modal (clinician notes + lab values) sepsis‑detection pipeline**.  
-This repo is public and **contains no patient‑level MIMIC data**—only literature notes, Kaggle‑based experiments, and reproducible code stubs.
+- Early‑stage notebook of everything I’m learning on the road to a **multi‑modal (clinician notes + lab values) sepsis‑detection pipeline**.  
+- Repo is public and contains no patient‑level MIMIC data - only literature notes and Kaggle‑based experiments.
 
 # ✨ Why this repo exists
 - Track key papers and implementation take‑aways in one place.  
