@@ -1,4 +1,4 @@
-# Sepsis-research-learnings-log
+# Sepsis_Research_Learnings_Log
 Research, literature reviews, and Kaggle‑based learnings toward a multi‑modal sepsis detection pipeline
 
 - Early‑stage notebook of everything I’m learning on the road to a **multi‑modal (clinician notes + lab values) sepsis‑detection pipeline**.  
