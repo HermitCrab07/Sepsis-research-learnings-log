@@ -1,0 +1,3 @@
+DATA_MODE: bigquery   
+BQ_PROJECT: sepsis
+MIMIC_DATA_DIR: 
