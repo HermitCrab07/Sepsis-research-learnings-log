@@ -7,7 +7,7 @@
 ## 2. Label Ambiguity (if sepsis labels are not accurate, the models will not be either)
   - Fair to say that (although I'm no sepsis  expert) sepsis LABELS are difficult to define and (I suspect) often not accurate. There is research on this issue.
   - Say this because first of all - defining sepsis is difficult i.e., there are different definitions (SIRS, Sepsis-2 or 3, SOFA ≥2)
-  - Second, the question is do administrative labels lag clinical reality? In other words, are the labs ordered BECAUSE the clinician suspects sepsis?
+  - Second, the question is do the labels lag clinical reality? In other words, are the labs ordered BECAUSE the clinician suspects sepsis?
   - Third, clinician judgment is essentially subjective and takes into account several things over the history of the patient - all of which may not be captured.
 
 ## 3. Onset Time Definition
