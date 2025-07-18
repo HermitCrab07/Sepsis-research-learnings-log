@@ -5,27 +5,28 @@
   - Goal: multi-modal early warning - labs + clinician notes (multi-modal because just labs predict very little).
 
 ## 2. Label Ambiguity (if sepsis labels are not accurate, the models will not be either)
-  - Fair to say that (though I'm no sepsis  expert) the sepsis LABELS are difficult to define and often not accurate. 
-  - Defining sepsis is difficult i.e., there are different definitions (SIRS alerts, Sepsis-2 or 3, SOFA ↑ ≥2)
-  - Furthermore, question is do administrative labels lag clinical reality?
-  - For ML we need an onset timestamp rule; definition choice affects labels & prevalence.
-  - Clinician judgment is essentially subjective and takes into account several things - all of which may not be captured.
+  - Fair to say that (although I'm no sepsis  expert) sepsis LABELS are difficult to define and (I suspect) often not accurate. There is research on this issue.
+  - Say this because first of all - defining sepsis is difficult i.e., there are different definitions (SIRS, Sepsis-2 or 3, SOFA ≥2)
+  - Second, the question is do administrative labels lag clinical reality? In other words, are the labs ordered BECAUSE the clinician suspects sepsis?
+  - Third, clinician judgment is essentially subjective and takes into account several things over the history of the patient - all of which may not be captured.
 
 ## 3. Onset Time Definition
-  - True biologic onset unknown; we proxy with first antibiotics + cultures + vitals?
-  - Charting delay (documented time ≠ physiologic time).
-  - Lead time calculation depends on this anchor.
-  - Data issues: missingness, irregular sampling, delayed charting(?)
-    - For at least one dataset, there are 40 - 50 features which seems like a rich source
+  - True biologic onset time is often very hard to know even for the clinicians. Predicting sepsis is a challenge for various reasons.
+  - How well is this captured on the charts? What if the documented time ≠ actual onset or the physiologic time?
+  - For example, there are a bunch of data issues: missingness, irregular sampling, delayed charting in the dataset I worked with:
+    - There are 40 - 50 features which seems like a rich source
     - But most of these are missing values (90% missing data)
     - Only 5 features have data for 88% - 93%
-    - Clinicians and hospitals use these 5 to predict sepsis, but models based on these 5 don't predict sepsis well (in fact, very badly).
+    - Clinicians and hospitals use these 5 to predict sepsis
+    - Models based on these 5 don't predict sepsis well (in fact, very badly).
+    - Furthermore, as mentioned before, we don't know if a lab was ordered BECAUSE the clinician suspected sepsis.
 
-## 4. Data Quality & Missingness
+## 4. Data Quality & INFORMATIVE Missingness (i.e., missingness is not at random, I don't think. It's more likely than not Missing Not at Random)
+  - Informative missingness (tests are ordered when concern is high)
+  - Impossible to know the reason behind the tests (unless the data is pulled in from clinician's notes?).
   - Irregular sampling; vitals not charted at fixed intervals.
-  - Informative missingness (tests ordered when concern is high - how would we know?).
   - Backfilled chart times (entered later) distort time series.
-  - Prevalence drift (suspecting this is an issue, but not sure).
+  - Prevalence drift (suspecting this is an issue, but not sure). Example would be definitions shift over time and therefore prevalance changes. 
 
 ## 5. Treatment Leakage (important distinction - were the labs ordered because clinician suspected sepsis?)
   - Labs (e.g., lactate draw) often triggered *because* clinician suspects sepsis.
