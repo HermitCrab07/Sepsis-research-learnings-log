@@ -55,4 +55,10 @@
   - Train/test split by hospital stay time period to test drift.
   - Report usual metrics, but also consider the impact of false alerts which is a burden on hospitals.
 
-#
+# 10. Final Thoughts
+  - Machine learning models for early sepsis detection often achieve high accuracy retrospectively but can fail or mislead in practice because they learn features that directly encode the label definition rather than genuine early warning signals. 
+  - Research has demonstrates that when ground-truth sepsis labels derive from consensus clinical criteria (e.g., certain vital sign thresholds), and those same measurements appear as input features, models simply reconstruct the definitional criteria instead of capturing causal precursors.
+  - Such models may show excellent retrospective AUROC yet perform poorly when deployed in settings where some measurements are delayed or missing, or when clinical workflows differ. 
+  - Without a causal framing—explicitly mapping which features causally precede sepsis onset versus which are artifacts of the diagnostic criteria—developers risk building systems that “predict” sepsis only at or after onset rather than enabling true early intervention. 
+  - A causal-inference approach would start by building a structural model of how physiological processes lead to sepsis, then identify interventions or surrogate markers that precede the consensus criteria, guiding data collection and validation in prospective studies.
+
