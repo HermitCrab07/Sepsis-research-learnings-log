@@ -4,11 +4,12 @@
   - Builds on *Sepsis Basics* notes (please also review the next notebook that shares the current SOTA models). 
   - Goal: multi-modal early warning - labs + clinician notes (multi-modal because just labs predict very little).
 
-## 2. Label Ambiguity (if sepsis labels are not accurate, the models will not be either)
-  - Fair to say that (although I'm no sepsis  expert) sepsis LABELS are difficult to define and (I suspect) often not accurate. There is research on this issue.
-  - Say this because first of all - defining sepsis is difficult i.e., there are different definitions (SIRS, Sepsis-2 or 3, SOFA ≥2)
-  - Second, the question is do the labels lag clinical reality? In other words, are the labs ordered BECAUSE the clinician suspects sepsis?
-  - Third, clinician judgment is essentially subjective and takes into account several things over the history of the patient - all of which may not be captured.
+## 2. Label Ambiguity (if sepsis labels are not accurate, the models will not be either) - so here are some challenges with Sepsis Label Accuracy
+  - Sepsis LABELS are difficult to define and often not accurate. To begin with, defining sepsis is difficult i.e., there are different definitions (SIRS, Sepsis-2 or 3, SOFA ≥2). There is a lack of a Gold Standard: Sepsis lacks a definitive diagnostic test, making its identification heavily reliant on clinical judgment and consensus definitions like Sepsis-3. This reliance can introduce variability and subjectivity into labeling.
+  - Circular Reasoning in Labeling: Many machine learning models use features such as SOFA scores or vital signs to predict sepsis, yet these features are often part of the criteria used to label sepsis cases. This overlap can lead to models that merely replicate the labeling criteria rather than uncovering new predictive patterns. This is a serious issue.
+  - Variability Across Institutions: Differences in clinical practices, documentation standards, and patient populations across hospitals lead to inconsistencies in sepsis labeling. This affects the generalizability of predictive models and will not have good external validation, which is why some sepsis prediction models have demonstrated poor performance when validated outside their development settings. This raises concerns about the robustness of the underlying labels and models. 
+  - Second, the question is do the labels lag clinical reality? In other words, are the labs ordered BECAUSE the clinician suspects sepsis? Clinician judgment is essentially subjective and takes into account several things over the history of the patient - all of which may not be captured in the labs and this makes complete clinician notes essential to good sepsis prediction.
+
 
 ## 3. Onset Time Definition
   - True biologic onset time is often very hard to know even for the clinicians. Predicting sepsis is a challenge for various reasons.
@@ -61,4 +62,18 @@
   - Such models may show excellent retrospective AUROC yet perform poorly when deployed in settings where some measurements are delayed or missing, or when clinical workflows differ. 
   - Without a causal framing—explicitly mapping which features causally precede sepsis onset versus which are artifacts of the diagnostic criteria—developers risk building systems that “predict” sepsis only at or after onset rather than enabling true early intervention. 
   - A causal-inference approach would start by building a structural model of how physiological processes lead to sepsis, then identify interventions or surrogate markers that precede the consensus criteria, guiding data collection and validation in prospective studies.
+
+# 11. Efforts to Improve Labeling Accuracy
+- Expert Consensus Labeling: Initiatives like the Ground Truth for Sepsis Questionnaire (GTSQ) involve daily assessments by experienced clinicians to provide more reliable sepsis labels, aiming to reduce subjectivity and enhance consistency. ([BioMed Central][1])
+- Harmonized Multi-Center Datasets: Projects that integrate data from multiple international centers, applying standardized definitions and rigorous validation protocols, are working towards creating more reliable and generalizable sepsis datasets. ([PMC][2])
+
+# 12. Recommendations for Researchers and Clinicians
+- Critical Evaluation of Labels: When developing or utilizing predictive models, it's essential to scrutinize the origin and criteria of sepsis labels to ensure they align with the intended clinical application.
+- Incorporate Clinical Expertise: Engaging clinicians in the labeling process can enhance the accuracy and relevance of sepsis annotations, especially in complex or ambiguous cases.
+- Prioritize External Validation: Testing models across diverse patient populations and healthcare settings can help assess their robustness and adaptability, ensuring they perform reliably in real-world scenarios.
+
+In summary, while sepsis labels in existing datasets provide a foundation for research and model development, their accuracy is not absolute. Ongoing efforts to refine labeling practices and validate models externally are crucial for advancing sepsis prediction and improving patient outcomes.
+
+[1]:https://translational-medicine.biomedcentral.com/articles/10.1186/s12967-022-03228-7?utm_source=chatgpt.com "Ground truth labels challenge the validity of sepsis consensus ..."
+[2]: https://pmc.ncbi.nlm.nih.gov/articles/PMC10425671/?utm_source=chatgpt.com "Predicting sepsis using deep learning across international sites"
 
